@@ -1,0 +1,394 @@
+//lab13
+
+//1
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+	string name;
+	double mark;
+	int age;
+};
+
+struct Group{
+	string gname;
+	int count;
+	Student* students;
+};
+
+int main() {
+	int n;
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		Group g;
+		cin >> g.gname >> g.count;
+		g.students = new Student[g.count];
+		double mgpa = -1.0;
+		int ms=0,k=0;
+		for (int i = 0; i < g.count; i++) {
+			cin >> g.students[i].name >> g.students[i].mark >> g.students[i].age;
+			if (!(g.students[i].age < 18)) {
+			    k++;
+				if (g.students[i].mark > mgpa) {
+					mgpa = g.students[i].mark;
+					ms=i;
+				}
+			}
+		}if (k!=0){
+		    cout << "MaxGPA of " << g.gname << " has " << g.students[ms].name << endl;
+		}
+		else{
+		    cout << "No student with max GPA and age >= 18 in group " << g.gname << endl;
+		}
+	}
+}*/
+
+//2
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+struct Flat {
+	string name;
+	int price, room;
+};
+
+struct City {
+	string cname;
+	int count;
+	Flat* flat;
+};
+
+int main() {
+	int n;
+	cin >> n;
+	for (int j = 0; j < n; j++) {
+		City c;
+		cin >> c.cname >> c.count;
+		c.flat = new Flat[c.count];
+		int minp = 999999999;
+		int k = 0, mk = 0;
+		for (int i = 0; i < c.count; i++) {
+			cin >> c.flat[i].name >> c.flat[i].price >> c.flat[i].room;
+			if (c.flat[i].room == 3) {
+				k++;
+				if ((c.flat[i].price) < minp) {
+					minp = c.flat[i].price;
+					mk = i;
+				}
+			}
+		}
+		cout << c.cname << endl;
+		if (k != 0) {
+			cout << "Cheapest flat with exactly 3 rooms is " << c.flat[mk].name << endl;
+		}
+		else {
+			cout << "No flat with exactly 3 rooms found" << endl;
+		}
+		cout << endl;
+	}
+}*/
+
+//3
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+struct Investor {
+	string name;
+	int invest;
+	bool status;
+};
+
+struct Company {
+	string cname;
+	int cost, num;
+	Investor* inv;
+};
+
+int main() {
+	int n;
+	cin >> n;
+	for (int j = 0; j < n; j++) {
+		Company c;
+		cin >> c.cname >> c.cost >> c.num;
+		c.inv = new Investor[c.num];
+		double s = 0;
+		for (int i = 0; i < c.num; i++) {
+			cin >> c.inv[i].name >> c.inv[i].invest >> c.inv[i].status;
+			if (c.inv[i].status == 0) {
+				s += c.inv[i].invest * 0.1;
+			}
+		}
+		if (s*3 >= c.cost) {
+			cout << c.cname << endl;
+		}
+	}
+}*/
+
+//4
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+struct Human {
+    string name;
+    int plus;
+    int minus;
+};
+
+struct Camp {
+    string cname;
+    int food;
+    int san;
+    Human* people;
+};
+
+int main() {
+    int n;
+    cin >> n;
+    for (int j = 0; j < n; j++) {
+        Camp c;
+        cin >> c.cname >> c.food >> c.san;
+        c.people = new Human[c.san];
+        int p = 0, m = 0;
+        for (int i = 0; i < c.san; i++) {
+            cin >> c.people[i].name >> c.people[i].minus >> c.people[i].plus;
+            p += c.people[i].plus;
+            m += c.people[i].minus;
+        }
+        c.food=c.food+(p-m)*12;
+        if (c.food>=0){
+            cout<<c.cname<<endl;
+        }
+    }
+}*/
+
+//5
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+struct Drug {
+	string name;
+	int price;
+	string date;
+};
+
+struct Apteka {
+	string aname;
+	int san;
+	Drug* drugs;
+};
+
+struct City {
+	string cname;
+	int asan;
+	Apteka* apteka;
+};
+
+int main() {
+	int n;
+	cin >> n;
+	for (int j = 0; j < n; j++) {
+		City c;
+		cin >> c.cname >> c.asan;
+		cout << "City: " << c.cname << endl;
+		c.apteka = new Apteka[c.asan];
+		double csum = 0;
+		for (int i = 0; i < c.asan; i++) {
+			cin >> c.apteka[i].aname >> c.apteka[i].san;
+			c.apteka[i].drugs = new Drug[c.apteka[i].san];
+			double asum = 0;
+			for (int k = 0; k < c.apteka[i].san; k++) {
+				cin >> c.apteka[i].drugs[k].name >> c.apteka[i].drugs[k].price >> c.apteka[i].drugs[k].date;
+				asum += c.apteka[i].drugs[k].price;
+			}
+			cout << "Average of " << c.apteka[i].aname << " is " << asum / c.apteka[i].san << endl;
+			csum += asum / c.apteka[i].san;
+		}
+		if (c.asan == 0) {
+			cout << "AVERAGE OF PRICE OF " << c.cname << ": " <<0<< endl;
+		}
+		else {
+			cout << "AVERAGE OF PRICE OF " << c.cname << ": " << csum / c.asan << endl;
+		}
+		cout << endl;
+	}
+}*/
+
+//6
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+	string name;
+	double gpa;
+	string grant;
+};
+
+struct Group {
+	string gname;
+	int count;
+	Student* students;
+};
+
+int main() {
+	int n;
+	cin >> n;
+	cout.precision(2);
+	for (int i = 0; i < n; i++) {
+		Group g;
+		cin >> g.gname >> g.count;
+		g.students = new Student[g.count];
+		double mgpa = 0;
+		int k = 0;
+		for (int i = 0; i < g.count; i++) {
+			cin >> g.students[i].name >> g.students[i].gpa >> g.students[i].grant;
+			if ((g.students[i].grant == "true")) {
+				k++;
+				mgpa += g.students[i].gpa;
+			}
+		}
+		cout << g.gname << ": Average is " << fixed << mgpa / k << endl;
+	}
+}*/
+
+//7
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+struct Flat {
+	string name;
+	int price;
+	int room;
+};
+
+struct City {
+	string cname;
+	int fsan;
+	Flat* flats;
+};
+
+int main() {
+	int n;
+	cin >> n;
+	for (int j = 0; j < n; j++) {
+		City c;
+		cin >> c.cname >> c.fsan;
+		c.flats = new Flat[c.fsan];
+		int mx = -99999999, mn = 99999999;
+		for (int i = 0; i < c.fsan; i++) {
+			cin >> c.flats[i].name >> c.flats[i].price >> c.flats[i].room;
+			if (c.flats[i].price > mx) {
+				mx = c.flats[i].price;
+			}
+			if (c.flats[i].price < mn) {
+				mn = c.flats[i].price;
+			}
+		}
+		cout << c.cname << " - " << mx - mn << endl;
+	}
+}*/
+
+//8
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+struct Builder {
+    string name;
+    string type;
+    int speed;
+};
+
+struct Tower {
+    string title;
+    string ttype;
+    int floors;
+    int sanb;
+    Builder* b;
+};
+
+int main() {
+    int n;
+    cin >> n;
+    cin.ignore();
+    for (int j = 0; j < n; j++) {
+        Tower t;
+        getline(cin >> ws, t.title);
+        cin >> t.ttype >> t.floors >> t.sanb;
+        t.b = new Builder[t.sanb];
+        int day = 0;
+        for (int i = 0; i < t.sanb; i++) {
+            cin >> t.b[i].name >> t.b[i].type >> t.b[i].speed;
+        }
+        while (t.floors > 0) {
+            if (t.b[day % t.sanb].type == t.ttype) {
+                t.floors -= t.b[day % t.sanb].speed * 2;
+            } else {
+                t.floors -= t.b[day % t.sanb].speed;
+            }
+            day++;
+        }
+        cout << t.title << " was built by " << day << " days" << endl;
+    }
+}*/
+
+//9
+/*#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+struct Lord {
+    string name;
+    int income;
+    bool t_free;
+    bool is_thief;
+};
+
+struct Kingdom {
+    string title;
+    int coffer;
+    double tax;
+    int lord_c;
+    Lord* lords;
+};
+
+bool compareKingdoms(const Kingdom& k1, const Kingdom& k2) {
+    return k1.coffer > k2.coffer;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    cin.ignore();
+    Kingdom* kingdoms = new Kingdom[n];
+
+    for (int j = 0; j < n; j++) {
+        Kingdom& k = kingdoms[j];
+        cin >> k.title >> k.coffer >> k.tax >> k.lord_c;
+        k.lords = new Lord[k.lord_c];
+
+        for (int i = 0; i < k.lord_c; i++) {
+            getline(cin >> ws, k.lords[i].name);
+            cin >> k.lords[i].income >> k.lords[i].t_free >> k.lords[i].is_thief;
+            cin.ignore();
+
+            if (k.lords[i].t_free == 0 && k.lords[i].is_thief == 0) {
+                k.coffer += k.lords[i].income * k.tax;
+            }
+            else if (k.lords[i].is_thief == 1) {
+                k.coffer -= k.lords[i].income;
+            }
+        }
+    }
+    sort(kingdoms, kingdoms + n, compareKingdoms);
+    for (int j = 0; j < n; j++) {
+        cout << kingdoms[j].title << " - " << kingdoms[j].coffer << endl;
+    }
+}*/

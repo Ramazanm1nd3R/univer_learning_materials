@@ -1,0 +1,1019 @@
+111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+#include <iostream>
+
+using namespace std;
+
+void swap_rows(int** matrix, int numb2, int k1, int k2) {
+    int temp;
+    for (int i = 0; i < numb2; i++) {
+        // Меняем элементы строк.
+        temp = matrix[k1-1][i];
+        matrix[k1-1][i] = matrix[k2-1][i];
+        matrix[k2-1][i] = temp;
+    }
+}
+
+int main() {
+    // Вводим размер матрицы.
+    int numb1 , numb2;
+    cin >> numb1>> numb2;
+
+    // Создаем матрицу.
+    int** matrix = new int* [numb1];
+    for (int i = 0; i < numb1; i++) {
+        matrix[i] = new int[numb2];
+    }
+
+    // Заполняем матрицу рандомом.
+    for (int i = 0; i < numb1; i++) {
+        for (int j = 0; j < numb2; j++) {
+            matrix[i][j] = rand() % 100;
+        }
+    }
+
+    // Вводим номера строк.
+    int k1, k2;
+    cin >> k1 >> k2;
+
+ for (int i = 0; i < numb1; i++) {
+        for (int j = 0; j < numb2; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+    // Меняем местами строки.
+    swap_rows(matrix,numb2, k1, k2);
+
+    // Выводим матрицу.
+    for (int i = 0; i < numb1; i++) {
+        for (int j = 0; j < numb2; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
+
+
+
+2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+#include <iostream>
+
+using namespace std;
+
+int find_min_element(int** matrix, int n, int m) {
+  int min_element = matrix[0][0];
+  int min_row = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (matrix[i][j] < min_element) {
+        min_element = matrix[i][j];
+        min_row = i;
+      }
+    }
+  }
+
+  return min_row;
+}
+
+int find_max_element(int** matrix, int n, int m) {
+  int max_element = matrix[0][0];
+  int max_row = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (matrix[i][j] > max_element) {
+        max_element = matrix[i][j];
+        max_row = i;
+      }
+    }
+  }
+
+  return max_row;
+}
+
+void swap_rows(int** matrix, int m, int min_row, int max_row) {
+  int temp;
+  for (int i = 0; i < m; i++) {
+    temp = matrix[min_row][i];
+    matrix[min_row][i] = matrix[max_row][i];
+    matrix[max_row][i] = temp;
+  }
+}
+
+int main() {
+  // Вводим размер матрицы.
+  int n, m;
+  cin >> n >> m;
+
+  // Создаем матрицу.
+  int** matrix = new int*[n];
+  for (int i = 0; i < n; i++) {
+    matrix[i] = new int[m];
+  }
+
+  // Заполняем матрицу рандомом.
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      matrix[i][j] = rand() % 100;
+    }
+  }
+
+  // Находим номера строк, содержащих минимальный и максимальный элементы матрицы.
+  int min_row = find_min_element(matrix, n, m);
+  int max_row = find_max_element(matrix, n, m);
+
+  // Меняем местами строки.
+  swap_rows(matrix, m, min_row, max_row);
+
+  // Выводим матрицу.
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      cout << matrix[i][j] << " ";
+    }
+    cout << endl;
+  }
+
+  return 0;
+}
+
+
+
+33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+#include <iostream>
+
+using namespace std;
+
+int find_last_positive_column(int** matrix, int n, int m) {
+    for (int i = m - 1; i >= 0; i--) {
+        bool positive = true;
+        for (int j = 0; j < n; j++) {
+            if (matrix[j][i] < 0) {
+                positive = false;
+                break;
+            }
+        }
+        if (positive) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void swap_columns(int** matrix, int n, int col1, int col2) {
+    int temp;
+    for (int i = 0; i < n; i++) {
+        temp = matrix[i][col1];
+        matrix[i][col1] = matrix[i][col2];
+        matrix[i][col2] = temp;
+    }
+}
+
+int main() {
+    // Вводим размер матрицы.
+
+    int n, m;
+    cin >> n >> m;
+
+    // Создаем матрицу.
+
+    int** matrix = new int* [n];
+    for (int i = 0; i < n; i++) {
+        matrix[i] = new int[m];
+    }
+
+    // Заполняем матрицу рандомом.
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            matrix[i][j] = rand() % 100;
+        }
+    }
+
+    // Находим номер последнего столбца, содержащего только положительные элементы.
+    int col = find_last_positive_column(matrix, n, m);
+
+    // Меняем местами столбцы.
+    if (col != -1) {
+        swap_columns(matrix, n, 0, col);
+    }
+
+    // Выводим матрицу.
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+44444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
+#include <iostream>
+#include <ctime>    // Для использования функции time
+
+
+void fillMatrix(int** matrix,int M,int N) {
+    // Инициализация генератора случайных чисел
+    std::srand(std::time(0));
+
+    // Заполнение матрицы случайными числами
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            matrix[i][j] = rand() % 100;  // Генерация случайных чисел от 0 до 99 (включительно)
+        }
+    }
+}
+
+void swapHalves(int** matrix,int M,int N) {
+    for (int i = 0; i < M / 2; ++i) {
+        for (int j = 0; j < N; ++j) {
+            // Меняем местами строки i и M/2 + i
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[M / 2 + i][j];
+            matrix[M / 2 + i][j] = temp;
+        }
+    }
+}
+
+void printMatrix(int** matrix,int M,int N) {
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            std::cout << matrix[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main() {
+    int M,N;
+    std::cin>>M>>N;
+
+    // Выделение памяти под динамический массив
+    int** matrix = new int*[M];
+    for (int i = 0; i < M; ++i) {
+        matrix[i] = new int[N];
+    }
+
+    fillMatrix(matrix,M,N);
+
+    std::cout << "Original Matrix:" << std::endl;
+    printMatrix(matrix,M,N);
+
+    swapHalves(matrix,M,N);
+
+    std::cout << "\nMatrix after swapping halves:" << std::endl;
+    printMatrix(matrix,M,N);
+
+    return 0;
+}
+
+
+
+55555555555555555555555555555555555555555555555555555555556666666666666666666666666666666666666666666666
+#include <iostream>
+
+void deleteRow(int** matrix, int& rows, int rowToDelete) {
+    // Проверка на корректность номера удаляемой строки
+    if (rowToDelete < 0 || rowToDelete >= rows) {
+        std::cout << "Некорректный номер строки для удаления." << std::endl;
+        return;
+    }
+
+    // Смещение строк выше удаленной строки на одну позицию вниз
+    for (int i = rowToDelete; i < rows - 1; ++i) {
+        matrix[i] = matrix[i + 1];
+    }
+
+    // Уменьшение количества строк
+    --rows;
+}
+
+void printMatrix(int** matrix, int rows, int cols) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cout << matrix[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main() {
+    int M, N, K = 2;
+    std::cin >> M >> N;
+    // Выделение памяти под динамический массив
+    int** matrix = new int* [M];
+    for (int i = 0; i < M; ++i) {
+        matrix[i] = new int[N];
+    }
+
+    // Инициализация матрицы случайными числами
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            matrix[i][j] = rand() % 10;  // Генерация случайных чисел от 0 до 9 (включительно)
+        }
+    }
+
+    std::cout << "Original Matrix:" << std::endl;
+    printMatrix(matrix, M, N);
+
+    // Удаление второй строки
+    deleteRow(matrix, M, K - 1);
+
+    std::cout << "\nMatrix after deleting the second row:" << std::endl;
+    printMatrix(matrix, M, N);
+
+    return 0;
+}
+
+
+
+7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
+#include <iostream>
+
+int M = 0;  
+int N = 0;  
+int K =4 ;  // Номер столбца для удаления
+
+void deleteColumn(int** matrix, int rows, int& cols, int colToDelete) {
+    // Проверка на корректность номера удаляемого столбца
+    if (colToDelete < 0 || colToDelete >= cols) {
+        std::cout << "Некорректный номер столбца для удаления." << std::endl;
+        return;
+    }
+
+    // Освобождение памяти под удаляемый столбец
+    for (int i = 0; i < rows; ++i) {
+        int* newColumn = new int[cols - 1];
+
+        // Копирование элементов столбца до удаляемого
+        for (int j = 0; j < colToDelete; ++j) {
+            newColumn[j] = matrix[i][j];
+        }
+
+        // Копирование элементов столбца после удаляемого
+        for (int j = colToDelete ; j < cols; ++j) {
+            newColumn[j] = matrix[i][j];
+        }
+
+        // Освобождение памяти для удаляемого столбца
+        delete[] matrix[i];
+
+        // Замена указателя на строку на новую строку без удаляемого столбца
+        matrix[i] = newColumn;
+    }
+
+    // Уменьшение количества столбцов
+    --cols;
+}
+
+void printMatrix(int** matrix, int rows, int cols) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cout << matrix[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main() {
+    // Выделение памяти под динамический массив
+    int** matrix = new int*[M];
+    for (int i = 0; i < M; ++i) {
+        matrix[i] = new int[N];
+    }
+
+    // Инициализация матрицы случайными числами
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            matrix[i][j] = rand() % 10;  // Генерация случайных чисел от 0 до 9 (включительно)
+        }
+    }
+
+    std::cout << "Original Matrix:" << std::endl;
+    printMatrix(matrix, M, N);
+
+    // Удаление последнего столбца
+    deleteColumn(matrix, M, N, K - 1);
+
+    std::cout << "\nMatrix after deleting the last column:" << std::endl;
+    printMatrix(matrix, M, N);
+    return 0;
+}
+
+
+
+
+88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+#include <iostream>
+
+int main() {
+    int n, m = 0;
+    std::cin >> n >> m;
+    int** list = new int* [n];
+    for (int i = 0; i < n; i++) {
+        list[i] = new int[m];
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cin >> list[i][j];
+        }
+    }
+    
+    // Find the first column with only positive elements
+    int k = 0;
+    for (int j = 0; j < m; j++) {
+        int c = 0;
+        for (int i = 0; i < n; i++) {
+            if (list[i][j] > 0) {
+                c += 1;
+            }
+        }
+        if (c == n) {
+            k = j;
+            break;
+        }
+    }
+
+    // If a column is found, create a new array and assign the modified matrix
+    if (k >= 0) {
+        int** newList = new int* [n];
+        for (int i = 0; i < n; i++) {
+            newList[i] = new int[m - 1];
+        }
+
+        for (int i = 0; i < n; i++) {
+            int newJ = 0;
+            for (int j = 0; j < m; j++) {
+                if (j != k) {
+                    newList[i][newJ++] = list[i][j];
+                }
+            }
+        }
+
+        // Deallocate the old array
+        for (int i = 0; i < n; i++) {
+            delete[] list[i];
+        }
+        delete[] list;
+
+        // Assign the new array to the given array
+        list = newList;
+        m -= 1;
+    }
+
+    // Output the modified matrix
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cout << list[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+    return 0;
+}
+
+
+
+9999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+#include <iostream>
+
+int main() {
+    int n, m = 0;
+    std::cin >> n >> m;
+    
+    // Allocate memory for the matrix
+    int** list = new int* [n + 1];
+    for (int i = 0; i < n + 1; i++) {
+        list[i] = new int[m];
+    }
+    
+    // Input matrix elements
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cin >> list[i][j];
+        }
+    }
+    
+  
+    // Input the value of K
+    int k = 0;
+    std::cin >> k;
+
+    // If K is within the valid range
+    if (k >= 1 && k <= n) {
+        // Create a new array
+        int** newList = new int* [n + 1];
+        for (int i = 0; i < n + 2; i++) {
+            newList[i] = new int[m];
+        }
+
+        // Insert the row of zeros before the row with number K
+        for (int i = 0; i < k - 1; i++) {
+            for (int j = 0; j < m; j++) {
+                newList[i][j] = list[i][j];
+            }
+        }
+
+        for (int j = 0; j < m; j++) {
+            newList[k - 1][j] = 0;
+        }
+
+       for (int i = k; i < n + 2; i++) {
+            for (int j = 0; j < m; j++) {
+                newList[i][j] = list[i - 1][j];
+            }
+        }
+
+        // Deallocate the old array
+        for (int i = 0; i < n + 1; i++) {
+            delete[] list[i];
+        }
+        delete[] list;
+
+        // Assign the new array to the given array
+        list = newList;
+        n += 1;
+    }
+
+    // Output the modified matrix
+    for (int i = 0; i < n ; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cout << list[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+
+    return 0;
+}
+
+
+10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+#include <iostream>
+
+int main() {
+    int n, m = 0;
+    std::cin >> n >> m;
+    
+    // Allocate memory for the matrix
+    int** list = new int* [n+1];
+    for (int i = 0; i < n + 1; i++) {
+        list[i] = new int[m];
+    }
+    
+    // Input matrix elements
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cin >> list[i][j];
+        }
+    }
+
+  
+    // Find the maximum element and its row
+    int max = list[0][0];
+    int k = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (max < list[i][j]) {
+                max = list[i][j];
+                k = i;
+            }
+        }
+    }
+
+    // Duplicate the row containing the maximum element
+    for (int i = n; i > k; i--) {
+        for (int j = 0; j < m; j++) {
+            std::swap(list[i][j], list[i - 1][j]);
+        }
+    }
+
+    for (int i = 0; i < m; i++) {
+        list[k][i] = list[k + 1][i];
+    }
+
+    // Output the modified matrix
+    for (int i = 0; i < n + 1; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cout << list[i][j] << " ";
+        }
+        std::cout << "\n";
+}
+    return 0;
+}
+
+11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11
+#include <iostream>
+
+int main() {
+  int n, m = 0;
+  std::cin >> n >> m;
+  int** list = new int* [n];
+  for (int i = 0; i < n; i++) {
+    list[i] = new int[m + 1];
+  }
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      std::cin >> list[i][j];
+    }
+  }
+
+  int saverIn = -1;
+  int c = 0;
+
+  for (int i = 0; i < m; i++) {
+    c = 0;
+    for (int j = 0; j < n; j++) {
+      if (list[j][i] > 0) {
+        c += 1;
+      }
+    }
+    if (c == 0) {
+      saverIn = i;
+    }
+  }
+
+  if (saverIn >= 0) {
+    for (int i = m; i > saverIn + 1; i--) {
+      for (int j = 0; j < n; j++) {
+        list[j][i] = list[j][i - 1];
+      }
+    }
+    for (int j = 0; j < n; j++) {
+      list[j][saverIn + 1] = 0;
+    }
+  }
+
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m + 1; j++) {
+      std::cout << list[i][j] << " ";
+    }
+    std::cout << "\n";
+  }
+
+  return 0;
+}
+
+
+
+12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 
+#include <iostream>
+
+int main() {
+    int n, m = 0;
+    std::cin >> n >> m;
+    int** list = new int* [n];
+    for (int i = 0; i < n; i++) {
+        list[i] = new int[m];
+    }
+
+    // Input matrix elements
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cin >> list[i][j];
+        }
+    }
+
+    int max = list[0][0];
+    int k = 0;
+
+    // Find the maximum element and its column index
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (max < list[j][i]) {
+                max = list[j][i];
+                k = i;
+            }
+        }
+    }
+
+    // Create a new matrix with one less column
+    int** newList = new int* [n];
+    for (int i = 0; i < n; i++) {
+        newList[i] = new int[m - 1];
+    }
+
+    // Copy elements from the original matrix to the new one, skipping the column to be removed
+    for (int i = 0; i < n; i++) {
+        for (int j = 0, newJ = 0; j < m; j++) {
+            if (j != k) {
+                newList[i][newJ] = list[i][newJ];
+                newJ++;
+            }
+        }
+    }
+
+    // Deallocate the memory for the original matrix
+    for (int i = 0; i < n; i++) {
+        delete[] list[i];
+    }
+    delete[] list;
+
+    // Assign the new matrix to the given array
+    list = newList;
+    m -= 1;
+
+    // Output the modified matrix
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cout << list[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+    return 0;
+}
+
+
+13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 
+#include <iostream>
+
+int main() {
+    int n, m = 0;
+    std::cin >> n >> m;
+
+    // Allocate memory for the matrix
+    int** list = new int* [n];
+    for (int i = 0; i < n; i++) {
+        list[i] = new int[m];
+    }
+
+    // вставить элементы массива
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cin >> list[i][j];
+        }
+    }
+
+    int c = 0;
+
+    // итерация между строк
+    for (int i = 0; i < n; i++) {
+        c = 0;
+        //ПРоверить текущий ли строка только позитивная
+        for (int j = 0; j < m; j++) {
+            if (list[i][j] <= 0) {
+                c += 1;
+            }
+        }
+
+        // если строка только позитивная, удалить его
+        if (c == 0) {
+            for (int l = i; l < n - 1; l++) {
+                for (int k = 0; k < m; k++) {
+                    list[l][k] = list[l + 1][k];
+                }
+            }
+            // уменьшить колчество строк
+            n -= 1;
+            // после смены обратить назад индекс
+            i -= 1;
+        }
+    }
+
+    // Output the modified matrix
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cout << list[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+    return 0;
+}
+
+
+14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int n, m;  //размер матрицы
+  cin >> n >> m;
+
+  int** matrix = new int*[n];  
+  for (int i = 0; i < n; i++) {
+    matrix[i] = new int[m];
+  }
+
+  // ставить элементы массива
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      cin >> matrix[i][j];
+    }
+  }
+
+  int** filteredMatrix = new int*[n]; 
+  for (int i = 0; i < n; i++) {
+    filteredMatrix[i] = new int[m];
+  }
+
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (i == j) {  // Skip the main diagonal element
+        continue;
+      }
+      filteredMatrix[i][j] = matrix[i][j];
+    }
+  }
+// удалить и приравнять массивы
+  for (int i = 0; i < n; i++) {
+    delete[] matrix[i];
+  }
+  delete[] matrix;
+
+  matrix = filteredMatrix;
+
+  // Print the modified matrix
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      cout << matrix[i][j] << " ";
+    }
+    cout << endl;
+  }]
+  return 0;
+}
+
+
+
+
+15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int n, m;  // Matrix dimensions
+    cin >> n >> m;
+
+    int** matrix = new int* [n + 1];  // Allocate memory for the original matrix
+    for (int i = 0; i < n + 1; i++) {
+        matrix[i] = new int[m];
+    }
+
+    // Read matrix elements
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    // найти элемент с самой длинной цепочкой нулей
+    int maxLength = 0;
+    int maxIndex = -1;
+    for (int i = 0; i < n; i++) {
+        int currentLength = 0;
+        for (int j = 0; j < m; j++) {
+            if (matrix[i][j] == 0) {
+                currentLength++;
+            }
+            else {
+                currentLength = 0;
+            }
+
+            if (currentLength > maxLength) {
+                maxLength = currentLength;
+                maxIndex = i;
+            }
+        }
+    }
+    
+
+    int** filteredMatrix = new int* [n + 1];
+    for (int i = 0; i < n + 1; i++) {
+        filteredMatrix[i] = new int[m];
+    }
+
+
+    int k = 0;
+    for (int i = 0; i < n + 1; i++) {
+        if (i == maxIndex) {  // Duplicate the row
+            for (int j = 0; j < m; j++) {
+                filteredMatrix[i][j] = matrix[maxIndex][j];
+            }
+
+            for (int j = 0; j < m; j++) {  
+                filteredMatrix[i + 1][j] = matrix[maxIndex][j];
+            }
+            i++;
+            k++;
+        }
+        else {  
+            for (int j = 0; j < m; j++) {
+                filteredMatrix[i][j] = matrix[k][j];
+            }k++;
+        }
+    }
+
+   
+    for (int i = 0; i < n + 1; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+
+    matrix = filteredMatrix;
+
+    // Print the modified matrix
+    for (int i = 0; i < n + 1; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 
+
+#include <iostream> 
+int main() 
+{ 
+    int m, n, k, k_counter = 0, one_counter = 0, count = 1; 
+    std::cin >> n >> m >> k; 
+    int* numbers_of_ks = new int[m]; 
+    int* numbers_of_ones = new int[n]; 
+    int** arr = new int* [n]; 
+    for (int i = 0; i < n; i++) { 
+        arr[i] = new int[m]; 
+        for (int j = 0 ; j < m; j++) { 
+            std::cin >> arr[i][j]; 
+             
+        } 
+    } 
+    for (int j = 0; j < m; j++) { 
+        for (int i = 0; i < n; i++) { 
+            if (arr[i][j] == k) { 
+                numbers_of_ks[j] = 1; 
+                k_counter++; 
+                count = 0; 
+                break; 
+                 
+            } 
+ 
+        } 
+        if (count == 1) 
+            numbers_of_ks[j] = 0; 
+        count = 1; 
+         
+    }  
+    count = 1; 
+     
+    for (int i = 0; i < n; i++) { 
+        for (int j = 0; j < m; j++){ 
+            if (arr[i][j] == 1) { 
+                numbers_of_ones[i] = 1; 
+                one_counter++; 
+                count = 0; 
+                break; 
+            } 
+        } 
+        if (count == 1) 
+            numbers_of_ones[i] = 0; 
+        count = 1; 
+    } 
+    n += one_counter; 
+    int m1= m - k_counter; 
+    int** arr1 = new int*[n]; 
+    for (int i = 0, a =0; i < n; i++, a++) { 
+        arr1[i] = new int[m1]; 
+        for (int j = 0, b = 0; j < m1; ) { 
+            if (numbers_of_ks[b] == 1) { 
+                b++; 
+            } 
+            else { 
+                arr1[i][j] = arr[a][b]; 
+                j++; 
+                b++; 
+            } 
+             
+        } 
+        if (numbers_of_ones[a] == 1) { 
+            i++; 
+            arr1[i] = new int[m1]; 
+            for (int j = 0, b = 0; j < m1; ) { 
+                 
+                 
+                if (numbers_of_ks[b] == 1) { 
+                    b++; 
+                } 
+                else { 
+                    arr1[i][j] = arr[a][b]; 
+                    j++; 
+                    b++; 
+                } 
+                 
+                 
+            } 
+        } 
+    } 
+     
+    for (int i = 0; i < n; i++) { 
+        for (int j = 0; j < m1; j++) { 
+            std::cout << arr1[i][j]<<" "; 
+        } 
+        std::cout << "\n"; 
+    } 
+}

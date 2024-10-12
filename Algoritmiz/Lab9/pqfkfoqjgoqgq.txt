@@ -1,0 +1,408 @@
+Ramazan 👨‍💻, [8/11/2023 12:21 PM]
+1 task
+
+#include <iostream>
+
+int main() {
+    int n, k = 0;
+    std::cin >> n;
+
+    
+    int* list = new int[n];
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+
+    std::cin >> k;
+    k -= 1;
+    for (int i = k; i < n-1; i++) {
+        std::swap(list[i], list[i + 1]);
+    }
+    n -= 1;
+
+    for (int i = 0; i < n; i++) {
+        std::cout << list[i] << " ";
+    }
+
+}
+
+
+
+2 task
+
+#include <iostream>
+
+int main() {
+    int n, k, l = 0;
+    std::cin >> n;
+    int* list = new int[n];
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    std::cin >> k >> l;
+    k -= 1;
+    l -= 1;
+    for (int i = 0; i <= l-k; i++) {
+        for (int j = k; j < n-1; j++) {
+            std::swap(list[j], list[j + 1]);
+        }
+        n -= 1;
+    }
+
+
+    std::cout << n << " ";
+    for (int i = 0; i < n; i++) {
+        std::cout << list[i] << " ";
+    }
+
+}
+
+3 task
+
+#include <iostream>
+
+int main() {
+    int n = 0;
+    int c = 0;
+    std::cin >> n;
+    int* list = new int[n];
+
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    for (int j = 0; j < n; j++) {
+        if (list[j] % 2 == 1) {
+            for (int i = j; i < n-1; i++) {
+                std::swap(list[i], list[i + 1]);
+            }
+            n -= 1;
+        }
+    }
+    std::cout << n << " ";
+    for (int i = 0; i < n; i++) {
+        std::cout << list[i] << " ";
+    }
+
+}
+
+4 task
+
+#include <iostream>
+
+int main() {
+    int n = 0;
+    int c = 0;
+    std::cin >> n;
+    int* list = new int[n];
+
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    for (int j = 1; j < n; j ++) {
+        for (int i = j; i < n - 1; i++) {
+            std::swap(list[i], list[i + 1]);
+        }
+        n -= 1;
+    }
+    
+    for (int i = 0; i < n; i++) {
+        std::cout << list[i] << " ";
+    }
+
+}
+
+5 task
+
+#include <iostream>
+
+int main() {
+    int n = 0;
+    int c = 0;
+    std::cin >> n;
+    int* list = new int[n];
+
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    for (int j = 0; j < n-1; j++) {
+        if (list[j+1] == list[j]) {
+            for (int i = j; i < n - 1; i++) {
+                std::swap(list[i], list[i + 1]);
+            }
+            n -= 1;
+            j--;
+        }
+    }
+    
+    for (int i = 0; i < n; i++) {
+        std::cout << list[i] << " ";
+    }
+
+}
+
+6 task
+
+#include <iostream>
+
+int main() {
+    int n = 0;
+    int k = 0;
+    std::cin >> n;
+    int* list = new int[n+1];
+    list[n] = 0;
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+
+    std::cin >> k;
+    k -= 1;
+    for (int i = n-1; i >= k; i--) {
+        std::swap(list[i], list[i + 1]);
+
+    }
+
+    for (int i = 0; i <= n; i++) {
+        std::cout << list[i] << " ";
+    }
+
+}
+
+7 task
+
+#include <iostream>
+
+int main() {
+    int n = 0;
+    std::cin >> n;
+    int* list = new int[n+2];
+    list[n] = 0;
+    list[n+1] = 0;
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    int min = list[0];
+    int max = list[0];
+    int indmin = 0;
+    int indmax = 0;
+    for (int i = 0; i < n; i++) {
+        if (min > list[i]) {
+            min = list[i];
+            indmin = i;
+        }
+        if (max < list[i]) {
+            max = list[i];
+            indmax = i;
+        }
+    }
+    for (int i = n - 1; i >= indmin; i--) {
+        std::swap(list[i], list[i + 1]);
+
+    }
+
+    
+    for (int i = n; i > indmax + 1; i--) {
+        std::swap(list[i], list[i + 1]);
+
+    }
+
+    for (int i = 0; i <= n+1; i++) {
+        std::cout << list[i] << " ";
+    }
+
+}
+
+8 task
+
+#include <iostream>
+
+int main() {
+    int n, k, m = 0;
+    std::cin >> n;
+    std::cin >> k;
+    std::cin >> m;
+    int* list = new int[n+m];
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    for (int i = n; i < n+m; i++) {
+        list[i] = 0;
+    }
+    
+    for (int i = n; i < n + m; i++) {
+        for (int j = i-1; j >= k; j--) {
+            std::swap(list[j], list[j + 1]);
+
+        }
+    }
+
+    for (int i = 0; i < n+m; i++) {
+        std::cout << list[i] << " ";
+    }
+}
+
+9 task
+
+#include <iostream>
+int main() {
+    int n = 0;
+    int c = 1;
+    int k = 0;
+    std::cin >> n;
+    int* list = new int[n+(n/2)];
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    for (int i = n; i < n + (n / 2); i++) {
+        list[i] = 0;
+    }
+
+    for (int i = n; i < n + (n / 2); i++) {
+        
+        for (int j = i-1; j >= c; j--) {
+            std::swap(list[j], list[j+1]);
+            k = j;
+        }
+        list[k] = list[k + 1];
+        c += 3;
+
+        
+    }
+
+    for (int i = 0; i < n + (n / 2); i++) {
+        std::cout << list[i] << " ";
+    }
+}
+
+10 task
+
+
+#include <iostream>
+
+int main() {
+    int n = 0;
+    int c = 0;
+    int k = 0;
+    std::cin >> n;
+    int* list = new int[n + n + 1];
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    for (int i = n; i < n + n + 1; i++) {
+        list[i] = 0;
+    }
+    for (int i = 0; i < n; i++) {
+        if (list[i] < 0) {
+            n += 1;
+            for (int j = n; j > i + 1; j--) {
+                std::swap(list[j], list[j - 1]);
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        std::cout << list[i] << " ";
+    }
+}
+
+
+
+11 task
+
+#include <iostream>
+
+int main() {
+    int n = 0;
+    int c = 0;
+    std::cin >> n;
+    int* list = new int[n+n];
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    for (int i = n; i < n + n; i++) {
+        list[i] = 0;
+    }
+    int i = 0;
+    while (i < n-1) {
+        if (list[i] == list[i + 1]) {
+            
+            n += 1;
+            for (int k = n; k > i; k--) {
+                std::swap(list[k], list[k - 1]);
+                
+            }
+            while (list[i+1] == list[i + 2]) {
+                i += 1;
+            }
+        }
+        i += 1;
+    }
+    for (int i = 0; i < n; i++) {
+        std::cout << list[i] << " ";
+    }
+}
+
+12 task
+
+#include <iostream>
+
+int main() {
+    int n = 0;
+    int c = 0;
+    std::cin >> n;
+    int* list = new int[n];
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    
+
+    for (int i = 0; i < n-1; i++) {
+        for (int j = i+1; j < n; j++) {
+            if (list[i] == list[j]) {
+                for (int k = j; k <= n; k++) {
+                    std::swap(list[k], list[k + 1]);
+                }
+                n -= 1;
+                j -= 1;
+            }
+        }
+    }
+    
+
+
+
+    for (int i = 0; i < n; i++) {
+        std::cout << list[i] << " ";
+    }
+}
+
+13 task
+
+#include <iostream>
+
+int main() {
+    int n = 0;
+    int c = 0;
+    std::cin >> n;
+    int* list = new int[n + n];
+    for (int i = 0; i < n; i++) {
+        std::cin >> list[i];
+    }
+    for (int i = n; i < n + n; i++) {
+        list[i] = 0;
+    }
+    int i = 0;
+    while (i < n) {
+        if (list[i] == list[i + 1]) {
+            while (list[i + 1] == list[i + 2]) {
+                i += 1;
+            }
+            for (int k = i; k <= n; k++) {
+                std::swap(list[k], list[k + 1]);
+            }
+            n -= 1;
+        }
+        i += 1;
+    }
+    for (int i = 0; i < n; i++) {
+        std::cout << list[i] << " ";
+    }
+}

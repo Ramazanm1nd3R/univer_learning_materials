@@ -1,0 +1,103 @@
+2 var
+
+//1
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Plain{
+  string number;
+  string model;
+  string leaveTime;
+  string arrivalTime;
+  bool is_agent;
+};
+
+int main() {
+  int num;
+  cin >> num;
+  
+  Plain* planes = new Plain[num];
+  for (int i = 0; i < num; i++) {
+    cin >> planes[i].number >> planes[i].model >> planes[i].leaveTime >> planes[i].arrivalTime >> planes[i].is_agent;
+  }
+  
+  int count = 0;
+  for (int i = 0; i < num; i++) {
+    int totalTime;
+    
+    int a_hour, l_hour, a_min, l_min;
+    sscanf(planes[i].arrivalTime.c_str(), "%d:%d", &a_hour, &a_min);
+    sscanf(planes[i].leaveTime.c_str(), "%d:%d", &l_hour, &l_min);
+
+    int a_min_total = a_hour * 60 + a_min;
+    int l_min_total = l_hour * 60 + l_min;
+
+    totalTime = l_min_total - a_min_total;
+    
+  if (planes[i].is_agent || totalTime <= 120 || planes[i].model == "RUCCKET" ||(planes[i].model == "TRASH" && totalTime <= 240)) {
+      cout << planes[i].number << endl;
+      count++;
+  }
+  }
+
+  cout << count;
+  
+  
+}
+
+
+
+
+//2
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Worker{
+  string name;
+  int productivity;
+  int salary;
+};
+
+struct Mechanism{
+  string name;
+  int details;
+  int cost;
+  int wCount;
+  Worker* workers;
+};
+
+int main() {
+  int num;
+  cin >> num;
+  
+  Mechanism* mechs = new Mechanism[num];
+  for(int i = 0; i < num; i++){
+    cin >> mechs[i].name >> mechs[i].details >> mechs[i].cost >> mechs[i].wCount;
+    mechs[i].workers = new Worker[mechs[i].wCount];
+    for(int j = 0; j < mechs[i].wCount; j++){
+      cin >> mechs[i].workers[j].name >> mechs[i].workers[j].productivity >> mechs[i].workers[j].salary;
+    }
+  }
+
+  int totalIncome;
+  for(int i = 0; i < num; i++){
+    int totalDetails = 0;
+    int totalSalary = 0;
+    for(int j = 0; j < mechs[i].wCount; j++){
+      totalDetails += mechs[i].workers[j].productivity;
+      totalSalary += mechs[i].workers[j].productivity * 3;
+    }
+    if(totalDetails * 3 >= mechs[i].details){
+      cout << mechs[i].name << " = " << mechs[i].cost -totalSalary << endl;
+    }
+    totalIncome += mechs[i].cost - totalSalary;
+  }
+  cout << "Total income: " << totalIncome;
+  
+}
+

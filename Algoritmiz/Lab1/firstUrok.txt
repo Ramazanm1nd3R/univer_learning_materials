@@ -1,0 +1,469 @@
+1. Даны две переменные a и b. Выведите их разность (a-b)
+
+#include <iostream>
+int main()
+{
+    int a, b;
+    std::cout << "enter the a = ";
+    std::cin >> a;
+    std::cout << "enter the b = ";
+    std::cin >> b;
+    std::cout << "your answer = " << a - b;
+}
+
+2. Даны два числа a и b. Найти их среднее арифметическое: (a + b)/2.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    float a, b;
+    cout << "a, b = ";
+    cin >> a >> b;
+    cout << "answer = " << (a+b)/2;
+}
+
+3. Найти длину окружности L и площадь круга S заданного радиуса R: L = 2·π·R, R: L = 2·π·R. В качестве значения π использовать 3.14.
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+    float r, l, s, pi = 3.14;
+    cout << "enter the R = ";
+    cin >> r;
+    l = 2*pi*r;
+    s = pi*(pow(r,2));
+    cout << "L = " << l << endl;
+    cout << "S = " << s;
+}
+
+4. Даны катеты прямоугольного треугольника a и b. Найти его гипотенузу c и периметр P: c = √(a^2 + b^2), P = a + b + c.
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+    float a, b, c, p;
+    c = (pow(a,2))+(pow(b,2));
+    c = sqrt(c);
+    p = a + b + c;
+    cout << "C = " << c << endl;
+    cout << "P =" << p;
+}
+
+5. Найти расстояние между двумя точками с заданными координатами (x1, y1) и (x2, y2) на плоскости. Расстояние вычисляется по формуле √((x2 − x1)^2 + (y2 − y1)^2)
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+    float x1, x2, y1, y2, a, b, c;
+    a = (pow(x2 - x1, 2));
+    b = (pow(y2 - y1, 2));
+    c = (sqrt(a + b));
+    cout << "x1 y1 = ";
+    cin >> x1 >> y1;
+    cout << "x2 y2 = ";
+    cin >> x2 >> y2;
+    cout << "Rasstoianye = " << c;
+}
+
+6. Даны переменные A, B, C. Изменить их значения, переместив содержимое A в B, B — в C, C — в A, и вывести новые значения переменных A, B, C.
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+ int A, B, C;
+ cout << "A: ";
+ cin >> A;
+ cout << "B: ";
+ cin >> B;
+ cout << "C: ";
+ cin >> C;
+ int e = A;
+ int r = B;
+ A = r;
+ B = C;
+ C = e;
+ cout << "A = " << A << endl;
+ cout << "B = " << B << endl;
+ cout << "C = " << C;     //A=B, B=C, C=A
+}
+
+7. Дан размер файла в байтах. Используя операцию деления нацело, найти количество полных килобайтов, которые занимает данный файл (1 килобайт = 1024 байта).
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    float byte, kb;
+    cout << "byte = ";
+    cin >> byte;
+    kb = byte / 1024;
+    cout << byte << " in kb = " << kb;
+}
+
+8. Даны целые положительные числа A и B (A > B). На отрезке длины A размещено максимально возможное количество отрезков длины B (без наложений). Используя операцию взятия остатка от деления нацело, найти длину незанятой части отрезка A.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int A, B;
+    cout << "A = ";
+    cin >> A;
+    cout << "B = ";
+    cin >> B;
+    if(A > B){
+         cout << "ostatok ot A= " << A % B;
+    }
+    else
+    {
+        cout << "ERROR" << endl;
+        cout << "A dolzno bit' bolshe B";
+    }
+}
+
+
+9. Известно, что X кг шоколада стоит A тенге, а Y кг карамели стоит B тенге. Определить, сколько стоит 1 кг шоколада, 1 кг карамели, а также во сколько раз шоколад дороже карамели.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    float Xkg, Ykg, A, B;
+    cout << "choclade kg = ";
+    cin >> Xkg;
+    cout << "konfet kg = ";
+    cin >> Ykg;
+    cout << "1 kg choclate price = ";
+    cin >> A;
+    cout << "1 kg konfet price = ";
+    cin >> B;
+    float D, E;
+    D = A * Xkg;
+    E = B * Ykg;
+    cout << "za " << Xkg << " kg " << D << " tenge" << endl;
+    cout << "za " << Ykg << " kg " << E << " tenge" << endl;
+    if(D>E)
+    {
+        cout << "choclate dorozhe v " << D / E << " raza";
+    }
+    else
+    {
+        cout << "konfety dorozhe ";
+    }
+}
+
+10. Дано двузначное число. Найти сумму и произведение его цифр.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a, b;
+    cout << "a = ";
+    cin >> a;
+    cout << a/10 << " " << a%10 << endl;
+    b = (a/10)+(a%10);
+    cout << "summa = " << b;
+}
+
+11. Дано трехзначное число. Вывести среднюю цифру.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a, b, c, d, e;
+    cout << "vvedy 3 znachnoe chislo = ";
+    cin >> a;
+    b = a/100;
+    c = (a%100)/10;
+    d = (a%100)%10;
+    cout << b << " " << c << " " << d << " " << endl;
+    e = (b+c+d)/3;
+    cout << "srednee chislo = " << e;
+}
+    
+12. Дано трехзначное число. Вывести число, полученное при перестановке цифр сотен и десятков исходного числа (например, 123 перейдет в 213).
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a,b,c,e;
+    cout << "enter the 3 chars nuber = ";
+    cin >> a;
+    b = a%100;
+    c = b/10;
+    e = a/100;
+    a = b%10;
+    b = (c*100) + (e*10) + a;
+    cout << "answer = "<< b; 
+}
+
+13.	Дано целое число, большее 999. Используя одну операцию деления нацело и одну операцию взятия остатка от деления, найти цифру, соответствующую разряду сотен в записи этого числа.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a, b;
+    cout << "a = ";
+    cin >> a;
+    b = (a/100)%10;
+    cout << "anwer = " << b;    
+}
+
+14. Дни недели пронумерованы следующим образом: 0 — воскресенье, 1 — понедельник, 2 — вторник, . . . , 6 — суббота. Дано целое число K, лежащее в диапазоне 1–365. Определить номер дня недели для K-го дня года, если известно, что в этом году 1 января было понедельником.
+15. Дни недели пронумерованы следующим образом: 0 — воскресенье, 1 — понедельник, 2 — вторник, . . . , 6 — суббота. Дано целое число K, лежащее в диапазоне 1–365. Определить номер дня недели для K-го дня года, если известно, что в этом году 1 января было вторником.
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b;
+    cout << "enter day (1-365) = ";
+    cin >> a;
+    
+    if(a <= 365)
+    {
+        b = a%7;
+        switch (b)
+        {
+        case 0:
+            cout << "sunday";
+            break;
+        case 1:
+            cout << "monday";
+            break;
+        case 2:
+            cout << "tuesday";
+            break;
+        case 3:
+            cout << "wednesday";
+            break;
+        case 4:
+            cout << "thersday";
+            break;
+        case 5:
+            cout << "friday";
+            break;
+        case 6:
+            cout << "saturday";
+            break;
+        default:
+            break;
+        }
+    }
+    else
+    {
+        cout << "ERROR" << endl << "enter the number in 1-365";
+    }
+
+
+} 
+
+16. Дан номер некоторого года (целое положительное число). Определить соответствующий ему номер столетия, учитывая, что, к примеру, началом 20 столетия был 1901 год.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a, b, c;
+    cout << "year = ";
+    cin >> a;
+    b = a / 100;
+    b = b + 1;
+    cout << a << " god eto " << b << " vek ";  
+}  
+
+17. С начала суток прошло N секунд (N — целое). Найти количество полных часов, прошедших с начала суток.
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int N;
+    cout << "sec = ";
+    cin >> N;
+    if(N <= 86400)
+    {
+        cout << "s nachala sutok proshlo " << N/3600 << " chasov, " << N/60 << " min";
+    }
+    else
+    {
+        cout << "proshlo " << N/86400 << " dney " << (N%86400)/3600 << " chasov " << (N%86400)/60;
+    }
+}
+
+18. Даны три точки A, B, C на числовой оси. Точка C расположена между точками A и B. Найти произведение длин отрезков AC и BC.
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    int A, C, B;
+    cout << "A, C, B = ";
+    cin >> A >> C >> B;
+    int asnwer;
+    asnwer = abs(C-A)*abs(B-C);
+    cout << "proizvedenye AC-BC = " << asnwer;
+}
+
+19. С начала суток прошло N секунд (N — целое). Найти количество полных минут, прошедших с начала последнего часа.
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int N;
+    cout << "sec = ";
+    cin >> N;
+    cout << "minut proshedshih s poslednego chasa = " << (N/60)%60 << endl;
+    cout << "chasov = " << (N/60)/60;
+}
+
+20. Даны два круга с общим центром и радиусами R1 и R2 (R1 > R2). Найти площади этих кругов S1 и S2, а также площадь S3 кольца, внешний радиус которого равен R1, а внутренний радиус равен R2.
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    float r1, r2, s1, s2, pi = 3.14;
+    cout << "R1, R2 = ";
+    cin >> r1 >> r2;
+    s1 = (pow(r1,2))*pi;
+    s2 = (pow(r2,2))*pi;    
+    
+    if(r1>r2)
+    {
+    cout << "S1 = " << s1 << endl;
+    cout << "S2 = " << s2 << endl;
+    cout << "S3 = " << s1-s2;
+    }
+    else
+    {
+        cout << "ERROR";
+    }
+}
+
+21. Даны координаты трех вершин треугольника: (x1, y1), (x2, y2), (x3, y3). Найти его периметр и площадь. Для нахождения площади треугольника со сторонами a, b, c использовать формулу Герона:
+S = √(p·(p − a)·(p − b)·(p − c)), где p = (a + b + c)/2 — полупериметр.
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    float x1, y1, x2, y2, x3, y3, a, b, c, p, s;
+    cout << "(x1, y1) = ";
+    cin >> x1 >> y1;
+    cout << "(x2, y2) = ";
+    cin >> x2 >> y2;
+    cout << "(x3, y3) = ";
+    cin >> x3 >> y3;
+    
+    c = sqrt(pow((x2-x1),2)+pow((y2-y1),2));
+    b = sqrt(pow((x2-x3),2)+pow((y2-y3),2));
+    a = sqrt(pow((x1-x3),2)+pow((y1-y3),2));    
+
+    p = (a+b+c)/2;
+    s = sqrt(p*(p-a)*(p-b)*(p-c));
+    cout << "a = " << a << " b = " << b << " c = " << c << endl;
+    cout << "S = " << s << endl << "P = " << p;
+}
+
+22. Скорость первого автомобиля = V1 км/ч, второго = V2 км/ч, расстояние между ними S км. Определить расстояние между ними через T часов, если автомобили удаляются друг от друга. Данное расстояние равно сумме начального расстояния и общего пути, проделанного автомобилями;
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    float v1, v2, S, T, answer;
+    cout << "1st auto speed km/h = ";
+    cin >> v1;
+    cout << "2nd speed km/h = ";
+    cin >> v2;
+    cout << "iznachalnoye rasstoyanye km = ";
+    cin >> S;
+    cout << "scol'ko chasov proshlo = ";
+    cin >> T;
+    answer = (v1*T) + (v2*T) + S;
+    cout << "cherez " << T << " chasov, budut v " << answer << " km " << endl << " drug ot druga ";  
+}
+
+23. Дни недели пронумерованы следующим образом: 1 — понедельник, 2 — вторник, . . . , 6 — суббота, 7 — воскресенье. Дано целое число K, лежащее в диапазоне 1–365, и целое число N, лежащее в диапазоне 1–7. Определить номер дня недели для K-го дня года, если известно, что в этом году 1 января было днем недели с номером N.
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b;
+    cout << "enter day (1-365) = ";
+    cin >> a;
+    if(a<=365)
+    {
+        b = a%7;
+        switch (b)
+        {
+        case 1:
+            cout << "monday" << " 1st day week";
+            break;
+        case 2:
+            cout << "tuesday" << " 2nd day week";
+            break;
+        case 3: 
+            cout << "wednesday" << " 3rd day week";
+            break;
+        case 4:
+            cout << "thersday" << " 4th day week";
+            break;
+        case 5:
+            cout << "Friday" << " 5th day week";
+            break;
+        case 6:
+            cout << "Saturday" << " 6th day week";
+            break;
+        case 0:
+            cout << "Sunday" << " 7th day week";
+            break;
+        default:
+            break;
+        }
+    }
+    else
+    {
+        cout << "ERROR";
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+

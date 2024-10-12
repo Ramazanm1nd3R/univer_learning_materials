@@ -1,0 +1,494 @@
+1. User enters the number N, and the N integer elements that stores in a one-dimensional array. Calculate the sum and the average of all elements in the array.
+two numbers on separate lines:
+sum
+average (precision 6 digits)
+
+#include <iostream>
+using namespace std; 
+int main() { 
+    int N, avgg; 
+    cin >> N; 
+    float  sum = 0, avg; 
+    float* num = new float[N]; 
+    for (int i = 0; i < N; ++i) { 
+        cin >> num[i]; 
+        sum += num[i]; 
+    } 
+    avg = sum / N; 
+    cout << sum << endl; 
+    avgg = avg; 
+    cout.precision(6); 
+    if (avgg == 0) { 
+        cout.precision(6); 
+        cout << avg; 
+    } 
+    else { 
+        cout.precision(7); 
+        cout << avg; 
+    } 
+}
+
+2. User enters the number N, and the N integer elements that stores in a one-dimensional array. You need to find the minimum and maximum element in this array.
+two numbers on separate lines:
+min element
+max element
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    int* num = new int[N];
+    for (int i = 0; i < N; ++i)
+    {
+        cin >> num[i];
+    }
+    int min = num[0];
+    int max = num[0];
+
+    for (int i = 1; i < N; i++)
+    {
+        if (num[i] < min)
+        {
+            min = num[i];
+        }
+        if (num[i] > max)
+        {
+            max = num[i];
+        }
+    }
+    cout << min << endl << max;
+}
+
+3. User enters the number N, and the N integer elements that stores in a one-dimensional array. The program should output only positive integers in the array.
+Positive integers stored in the array. If there aren't any, print "no positive numbers".
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int N, NN = 0;
+    cin >> N;
+    vector<int> num(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> num[i];
+    }
+    for (int i = 0; i < N; i++)
+    {
+        if (num[i] > 0)
+        {
+            cout << num[i] << " ";
+            NN++;
+        }
+    }
+    if (NN == 0)
+    {
+        cout << "no positive numbers";
+    }
+}
+
+4. User enters the number N, and the N integer elements that stores in a one-dimensional array. Then user input an integer M. Output all elements of the array that are greater than M.
+Integers stored in the array that are greater than M. If there aren't any, print "all elements are less than M".
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int N, NN = 0;
+    cin >> N;
+    vector<int> num(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> num[i];
+    }
+    int M;
+    cin >> M;
+    for (int i = 0; i < N; i++)
+    {
+        if (num[i] > 0)
+        {
+            cout << num[i] << " ";
+            NN++;
+        }
+    }
+    if (NN == 0)
+    {
+        cout << "all elements are less than M";
+    }
+}
+
+5. User enters the number N, and the N integer elements that stores in a one-dimensional array. Swap the minimum and maximum elements and print the array.
+all elements of modified array
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    vector<int> num(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> num[i];
+    }
+    int max = num[0];
+    int maxind = 0;
+    int min = num[0];
+    int minind = 0;
+    for (int i = 0; i < N; i++)
+    {
+        if (num[i] > max)
+        {
+            maxind = i;
+            max = num[i];
+        }
+        if (num[i] < min)
+        {
+            minind = i;
+            min = num[i];
+        }
+    }
+    int x = num[maxind];
+    num[maxind] = num[minind];
+    num[minind] = x;
+    for (int i = 0;i < N; i++)
+    {
+        cout << num[i] << " ";
+    }
+
+}
+
+6. User enters the number N, and the N integer elements that stores in a one-dimensional array. Reading from first element to last, print all even numbers. Then reading from last to first print all odd numbers. Zero is considered to be an even number.
+on separate lines:
+even numbers of the array from the first element to the last
+odd numbers of the array from the last element to the first
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    vector<int> num(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> num[i];
+    }
+    for (int i = 0; i < N; i++)
+    {
+        if (num[i] % 2 == 0)
+        {
+            cout << num[i] << " ";
+        }
+    }
+    cout << endl;
+    for (N; N >= 0; N--)
+    {
+        if (num[N] % 2 != 0)
+        {
+            cout << num[N] << " ";
+        }
+    }
+}
+
+7. User enters the number N, and the N integer elements that stores in a one-dimensional array. Print elements in the following order: A1, AN, A2, AN−1, A3, AN−2, . . .
+elements of the array in the following order: A1, AN, A2, AN−1, A3, AN−2, . . .
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    vector<int> num(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> num[i];
+    }
+
+    for (int i = 0; i < N / 2; i++)
+    {
+        cout << num[i] << " " << num[N - 1 - i] << " ";
+    }
+    if (N % 2 != 0)
+    {
+        cout << num[N / 2];
+    }
+}
+
+8. User enters the number N, and the N integer elements that stores in a one-dimensional array. Enter the numbers K and L (1 ≤ K ≤ L ≤ N). Find the average of the elements between indexes K and L, including K and L.
+average number of elements between K and L
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int N;
+    float K, L, sum = 0, avg;
+    cin >> N;
+    vector<int> num(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> num[i];
+    }
+    cin >> K >> L;
+    for (int i = K; i <= L; i++)
+    {
+        sum += num[i];
+    }
+    avg = sum / (L - K + 1);
+    cout << avg;
+}
+
+9. User enters the number N, and the N integer elements that stores in a one-dimensional array. Enter the numbers K and L (1 ≤ K ≤ L ≤ N). Find the sum of all elements EXCEPT for the elements between indexes K and L, including K and L.
+sum of all elements EXCEPT for the elements between indexes K and L, including K and L.
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int N, K, L, sum = 0;
+    cin >> N;
+    vector<int> num(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> num[i];
+    }
+    cin >> K >> L;
+    for (int i = 0;i < N; i++)
+    {
+        if (i < K || L < i)
+        {
+            sum += num[i];
+        }
+    }
+    cout << sum;
+}
+
+10. User enters the number N, and the N integer elements that stores in a one-dimensional array. Print all the local minimums. The local minimum is the element that is smaller than 2 nearest neighbors (the first and the last element cannot be a local minimum).
+sequence of local minimums
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() 
+{
+    int N;
+    cin >> N;
+    vector<int> num(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> num[i];
+    }  
+    
+    for (int i = 1; i < N - 1; i++)
+    {
+        if (num[i] < num[i - 1] && num[i] < num[i + 1])
+        {
+            cout << num[i] << " ";
+        }
+    }
+}
+
+11. User enters the number N, and the N integer elements that stores in a one-dimensional array. After he enters the number R. Find the element of an array, that is closest to the value of R (that is, the element AK for which the value |AK − R| is minimal). If there are two different closest numbers (like 6 and 8 have an equal distance to the 7), print the last of it.
+a number
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() 
+{
+    int N, R;
+    cin >> N;
+    vector<int> num(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> num[i];
+    }  
+    cin >> R;
+    int c = num[0];
+    int minD = abs(num[0] - R);
+    for (int i = 1; i < N; i++)
+    {
+        int dif = abs(num[i] - R);
+        if (dif <= minD) 
+        {
+            c = num[i];
+            minD = dif;
+        }
+    }
+    cout << c;
+}
+
+12. User enters the number N, and the N integer elements that are stored in a one-dimensional array. Zero out (transform to 0) the array elements located between the indexes of minimum and maximum elements (not including the minimum and maximum elements).
+altered array, the same array if there is no elements between min and max, or "error" is there are more than one min or max elements
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+int main() {
+    int N, x = 0, y = 0;
+    int minV = 1, maxV = 1;
+    cin >> N;
+    vector<int> num(N);
+    cin >> num[0];
+    for (int i = 1; i < N; i++) 
+    {
+        cin >> num[i];
+        if (num[i] < num[x]) 
+        {
+            x = i;
+            minV = 1;
+        } 
+        
+        else if (num[i] > num[y]) 
+        {
+            y = i;
+            maxV = 1;
+        } else {
+            if (num[i] == num[x]) 
+            {
+                minV++;
+            }
+            if (num[i] == num[y]) {
+                maxV++;
+            }
+        }
+    }
+    
+    if (minV > 1) 
+    {
+        cout << "error";
+    }
+    else if (maxV > 1)
+    {
+        cout << "error";
+    } 
+    else 
+    {
+        for (int i = 0; i < N; i++) 
+        {
+            if ((i < max(x, y)) && (i > min(x, y))) 
+            {
+                cout << "0 ";
+            } 
+            
+            else 
+            {
+                cout << num[i] << " ";
+            }
+        }
+    }
+}
+
+13. User enters the number N, and the N integer elements that stores in a one-dimensional array. Check whether its elements form an arithmetic progression. If they do, then output the difference of the progression; if not, output 0.
+difference of the progression or zero.
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+    vector<int> nums(N);
+    for (int i = 0; i < N; i++) 
+    {
+        cin >> nums[i];
+    }
+    int x = nums[1] - nums[0];
+    bool a = true;
+    for (int i = 2; i < N; i++) 
+    {
+        if (nums[i] - nums[i - 1] != x) 
+        {
+            a = false;
+            break;
+        }
+    }
+    if (a) 
+    {
+        cout << x;
+    } 
+    else 
+    {
+        cout << 0;
+    }
+}
+
+14. Write a program that asks a user to input an integer n. The program should prompt the user to input n integers and store them in one-dimensional array. Then the program should find the sum of elements between two zeros.
+sum of elements between two zeros; if there are less or more than two zeros, print "error"
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+    vector<int> num(N);
+    int sum = 0, x = 0;
+
+    for (int i = 0; i < N; i++) 
+    {
+        cin >> num[i];
+        if (num[i] == 0) 
+        {
+            x++;
+        }
+        else if (x == 1) 
+        {
+            sum += num[i];
+        }
+    }
+
+    if (x != 2) 
+    {
+        cout << "error";
+    }
+    else 
+    {
+        cout << sum;
+    }
+}
+
+15. User enters the number N, and the N integer elements that stores in a one-dimensional array. Find the maximum number of its identical elements.
+max number of identical elemetns
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+    vector<int> nums(N);
+    for (int i = 0; i < N; i++) {
+        cin >> nums[i];
+    }
+    int max = 0;
+    for (int i = 0; i < N; i++) {
+        int x = 1;
+
+        for (int j = i + 1; j < N; j++) {
+            if (nums[i] == nums[j]) {
+                x++;
+            }
+        }
+        if (x > max) {
+            max = x;
+        }
+    }
+    cout << max << endl;
+}

@@ -1,0 +1,80 @@
+def4
+var1
+
+//1
+#include <iostream>
+#include <string>
+int main() {
+    string s;
+    int k;
+    getline(cin, s);
+    for (int i = 0; i < s.length(); i++) {
+        char a = s[i].tolower();
+        if (a == 'a' || a == 'e' || a == 'u' || a == 'i' || a == 'o' || a == 'y' || a == 'w') {
+            k++;
+        }
+    }
+    cout << k;
+}
+
+//2
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s;
+    int cw = 0, k = 0;
+    getline(cin, s);
+    
+    for (int i = 0; i < s.size(); i++) {
+        if (isalnum(s[i])) {
+            k++;
+        }
+        else {
+            if (k>1 && tolower(s[i - 1]) == tolower(s[i - k])) {
+                cw++;
+            }
+            k = 0;
+        }
+    }
+    if (k>1){
+        if (tolower(s.back()) == tolower(s[s.size() - k])) {
+                cw++;
+        }
+    }
+    cout<<cw;
+}
+
+//3
+#include <iostream>
+#include <string>
+using namespace std;
+struct Plane {
+    string id;
+    string a_time;
+    string l_time;
+};
+Plane parse_input() {
+    Plane plane;
+    cin >> plane.id >> plane.a_time >> plane.l_time;
+    return plane;
+}
+int time(string s1, string s2) {
+    int h1, m1, h2, m2;
+    sscanf(s1.c_str(), "%d:%d", &h1, & m1);
+    sscanf(s2.c_str(), "%d:%d", &h2, & m2);
+    int t1 = h1 * 60 + m1;
+    int t2 = h2 * 60 + m2;
+    return t2 - t1;
+}
+int main() {
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        Plane plane = parse_input();
+        if (time(plane.a_time, plane.l_time) > 120) {
+            cout << plane.id<<" "<<plane.a_time<<" "<<plane.l_time<<endl;
+        }
+    }
+}

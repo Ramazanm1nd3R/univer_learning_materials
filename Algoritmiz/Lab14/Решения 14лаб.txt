@@ -1,0 +1,216 @@
+-----------------------------------------------------
+1 задача
+
+
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main() {
+    std::ifstream file("webpage.html");
+    if (!file.is_open()) {
+        std::cout << "Ошибка открытия файла!" << std::endl;
+        return 1;
+    }
+
+    std::string line;
+    int h1Count = 0, imgCount = 0, aCount = 0;
+
+    while (std::getline(file, line)) {
+        // Подсчет тегов <h1>, <img>, <a>
+        if (line.find("<h1>") != std::string::npos) {
+            h1Count++;
+        } else if (line.find("<img") != std::string::npos) {
+            imgCount++;
+        } else if (line.find("<a") != std::string::npos) {
+            aCount++;
+        }
+    }
+
+    file.close();
+
+    // Вывод статистики
+    std::cout << "Количество тегов <h1>: " << h1Count << std::endl;
+    std::cout << "Количество тегов <img>: " << imgCount << std::endl;
+    std::cout << "Количество тегов <a>: " << aCount << std::endl;
+
+    return 0;
+}
+
+-----------------------------------------------------
+2 задача
+
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main() {
+    std::ifstream file("webpage.html");
+    if (!file.is_open()) {
+        std::cout << "Ошибка открытия файла!" << std::endl;
+        return 1;
+    }
+
+    std::string line;
+    int hCount = 0, pCount = 0, imgCount = 0, aCount = 0;
+
+    while (std::getline(file, line)) {
+        // Подсчет элементов: заголовков, параграфов, изображений, ссылок
+        if (line.find("<h") != std::string::npos) {
+            hCount++;
+        } else if (line.find("<p") != std::string::npos) {
+            pCount++;
+        } else if (line.find("<img") != std::string::npos) {
+            imgCount++;
+        } else if (line.find("<a") != std::string::npos) {
+            aCount++;
+        }
+    }
+
+    file.close();
+
+    // Вывод статистики
+    std::cout << "Количество заголовков: " << hCount << std::endl;
+    std::cout << "Количество параграфов: " << pCount << std::endl;
+    std::cout << "Количество изображений: " << imgCount << std::endl;
+    std::cout << "Количество ссылок: " << aCount << std::endl;
+
+    return 0;
+}
+-----------------------------------------------------------
+3 задача
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <algorithm>
+
+// Функция для удаления лишних символов из строки (теги, пробелы)
+std::string removeTags(const std::string& str) {
+    std::string result;
+    bool insideTag = false;
+
+    for (char c : str) {
+        if (c == '<') {
+            insideTag = true;
+            continue;
+        } else if (c == '>') {
+            insideTag = false;
+            continue;
+        }
+
+        if (!insideTag) {
+            result += c;
+        }
+    }
+
+    return result;
+}
+
+// Функция для разделения строки по разделителю
+std::vector<std::string> splitString(const std::string& str, char delimiter) {
+    std::vector<std::string> tokens;
+    std::stringstream ss(str);
+    std::string token;
+
+    while (std::getline(ss, token, delimiter)) {
+        tokens.push_back(token);
+    }
+
+    return tokens;
+}
+
+int main() {
+    std::ifstream file("multiple_tables.html");
+    if (!file.is_open()) {
+        std::cout << "Ошибка открытия файла!" << std::endl;
+        return 1;
+    }
+
+    std::string line;
+    std::vector<std::vector<std::vector<std::string>>> tables;
+    std::vector<int> rowCount;
+
+    while (std::getline(file, line)) {
+        if (line.find("<table>") != std::string::npos) {
+            std::vector<std::vector<std::string>> table;
+            int rows = 0;
+
+            while (std::getline(file, line) && line.find("</table>") == std::string::npos) {
+                if (line.find("<tr>") != std::string::npos) {
+                    std::vector<std::string> row;
+
+                    while (std::getline(file, line) && line.find("</tr>") == std::string::npos) {
+                        if (line.find("<td>") != std::string::npos) {
+                            std::string cell = removeTags(line);
+                            row.push_back(cell);
+                        }
+                    }
+
+                    if (!row.empty()) {
+                        table.push_back(row);
+                        rows++;
+                    }
+                }
+            }
+
+            if (!table.empty()) {
+                tables.push_back(table);
+                rowCount.push_back(rows);
+            }
+        }
+    }
+
+    file.close();
+
+    // Поиск таблицы с максимальным количеством строк
+    auto maxRows = std::max_element(rowCount.begin(), rowCount.end());
+    int maxRowIndex = std::distance(rowCount.begin(), maxRows);
+
+    std::cout << "Таблица с максимальным количеством строк:" << std::endl;
+    for (const auto& row : tables[maxRowIndex]) {
+        for (const auto& cell : row) {
+            std::cout << cell << " | ";
+        }
+        std::cout << std::endl;
+    }
+
+    // Анализ данных таблиц
+    for (size_t i = 0; i < tables.size(); ++i) {
+        std::cout << "Таблица " << i + 1 << ":" << std::endl;
+
+        // Вычисление средних значений числовых столбцов
+        std::vector<double> numericColumnSum(tables[i][0].size(), 0.0);
+        int numericColumnCount = 0;
+
+        for (const auto& row : tables[i]) {
+            for (size_t j = 0; j < row.size(); ++j) {
+                try {
+                    double value = std::stod(row[j]);
+                    numericColumnSum[j] += value;
+                    numericColumnCount++;
+                } catch (const std::invalid_argument&) {
+                    // Пропуск нечисловых значений
+                }
+            }
+        }
+
+        std::cout << "Средние значения числовых столбцов:" << std::endl;
+        for (size_t j = 0; j < numericColumnSum.size(); ++j) {
+            double average = numericColumnSum[j] / numericColumnCount;
+            std::cout << "Столбец " << j + 1 << ": " << average << std::endl;
+        }
+
+        // Подсчет количества строк и столбцов
+        std::cout << "Количество строк: " << rowCount[i] << std::endl;
+        std::cout << "Количество столбцов: " << tables[i][0].size() << std::endl;
+
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
+

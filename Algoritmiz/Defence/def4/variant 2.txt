@@ -1,0 +1,95 @@
+ALGORITHMIZATION AND PROGRAMMING  
+ 
+DEFENCE 4 VARIANT 2   
+ 
+ACTIVITIES  
+ 
+Code the following tasks according to your variant.   
+ 
+(Grades: one task – 50 points, two tasks – 80 points, three tasks - 100)  
+ 
+  
+ 
+Variant1  
+ 
+Enter a string containing car numbers. They must be in this format: A427RHU  
+ 
+- Letters must be in 0 and 4-6 positions, numbers in 1-3 positions  
+ 
+- The line length should not exceed 7.  
+ 
+Given a string. Find out if it is correct  
+ 
+Input:  
+ 
+B456YEG  
+ 
+GRE128H  
+ 
+H485JKLU  
+ 
+Output:  
+ 
+YES  
+ 
+NO  
+ 
+NO  
+ 
+  
+ 
+Given a text and a word. Find how many times a given word appears in a line?  
+ 
+Input:   
+ 
+RED APPLE GREEN APPLE YELLOW APPLE  
+ 
+APPLE   
+ 
+Output:  
+ 
+3  
+ 
+  
+ 
+Create struct Student:  
+ 
+Name (name and surname separated by space)  
+ 
+Mark_math  
+ 
+Mark_english  
+ 
+Mark_programming  
+ 
+Display students with an average score in three subjects of 4x or higher  
+ 
+Input:  
+ 
+5  
+ 
+Tomas Anderson  
+ 
+5 5 4  
+ 
+Steve White  
+ 
+3 3 4  
+ 
+Anna Smith  
+ 
+4 2 5  
+ 
+Jackson Turley  
+ 
+2 4 3  
+ 
+Katty Bree  
+ 
+3 5 4  
+ 
+Output:   
+ 
+Tomas Anderson 4.67  
+ 
+Katty Bree 4

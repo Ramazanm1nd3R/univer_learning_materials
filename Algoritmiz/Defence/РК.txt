@@ -1,0 +1,52 @@
+(1 не примет потому что через вектора, 2 задачи нет, 3 задача норм)
+
+#include <iostream>
+#include <vector>
+
+int main() {
+    int size;
+    std::cout << "Enter the size of the array: ";
+    std::cin >> size;
+
+    std::vector<int> dynamicArray(size);
+
+    std::cout << "Enter " << size << " elements: ";
+    for (int i = 0; i < size; ++i) {
+        std::cin >> dynamicArray[i];
+    }
+
+    std::vector<int> newArray;
+    for (int num : dynamicArray) {
+        if (num % 3)
+            newArray.push_back(num);
+    }
+
+    std::cout << "Size of the new array: " << newArray.size() << "\nElements of the new array: ";
+    for (int num : newArray)
+        std::cout << num << " ";
+    std::cout << std::endl;
+
+    return 0;
+}
+
+
+
+
+
+
+
+#include <iostream>
+
+int power(int base, int exponent) {
+    return (exponent == 0) ? 1 : base * power(base, exponent - 1);
+}
+
+int main() {
+    int base, exponent;
+    std::cout << "Введите базовое число и показатель: ";
+    std::cin >> base >> exponent;
+
+    std::cout << base << " Возведен в степень " << exponent << " равно: " << power(base, exponent) << std::endl;
+
+    return 0;
+}

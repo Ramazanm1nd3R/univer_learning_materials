@@ -1,0 +1,120 @@
+def4
+var 2
+//1
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string f="NO";
+    string s;
+    getline(cin, s);
+    if (s.size()<=7){
+        if(isalpha(s[0])&&isalpha(s[4])&&isalpha(s[5])&&isalpha(s[6])&&isdigit(s[1])&&isdigit(s[2])&&isdigit(s[3])){
+            f="YES";
+        }
+    }
+    cout<<f;
+}
+
+//1.2
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string f="NO";
+    string s;
+    getline(cin, s);
+    if (s.size()==7){
+        for (int i = 0; i < 7; ++i) {
+        if ((i == 0 || (i >= 4 && i <= 6)) && isalpha(s[i])) {
+            f="YES";
+        } else if ((i >= 1 && i <= 3) && isdigit(s[i])) {
+            f="YES";
+        }
+    }
+    }
+    cout<<f;
+}
+
+//1.1.2
+#include <iostream>
+#include <string>
+using namespace std;
+string check(const string& s) {
+    if (s.size() != 7) {
+        return "NO";
+    }
+    for (int i = 0; i < 7; ++i) {
+        if ((i == 0 || (i >= 4 && i <= 6)) && !isalpha(s[i])) {
+            return "NO";
+        } else if ((i >= 1 && i <= 3) && !isdigit(s[i])) {
+            return "NO";
+        }
+    }
+    return "YES";
+}
+int main() {
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; ++i) {
+        string s;
+        cin>>s;
+        cout <<check(s) << endl;
+    }
+}
+
+
+//2
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string s, s1;
+    getline(cin, s);
+    cin >> s1;
+    int k = 0;
+    size_t pos = 0;
+    while ((pos = s.find(s1, pos)) < s.length()) {
+        k++;
+        pos = pos + 1;
+    }
+    cout << k << endl;
+}
+
+//3
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct stud {
+    string name;
+    int math;
+    int eng;
+    int prog;
+};
+
+stud parse_input() {
+    stud s;
+    getline(cin, s.name);
+    cin >> s.math >> s.eng >> s.prog;
+    cin.ignore();
+    return s;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    cin.ignore();
+    cout.precision(2);
+    for (int i = 0; i < n; i++) {
+        stud s = parse_input();
+        float avg =(s.math + s.eng + s.prog) / 3.0;
+        if (avg >= 4) {
+            cout << s.name << " " << fixed << avg << endl;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Несколько таблиц данных</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Имя</th>
+            <th>Возраст</th>
+            <th>Оценка</th>
+        </tr>
+        <tr>
+            <td>Анна</td>
+            <td>25</td>
+            <td>85</td>
+        </tr>
+        <tr>
+            <td>Петр</td>
+            <td>30</td>
+            <td>75</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>Город</th>
+            <th>Популяция</th>
+        </tr>
+        <tr>
+            <td>Нью-Йорк</td>
+            <td>8500000</td>
+        </tr>
+        <tr>
+            <td>Лондон</td>
+            <td>9300000</td>
+        </tr>
+    </table>
+</body>
+</html>
