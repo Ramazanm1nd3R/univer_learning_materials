@@ -1,5 +1,3 @@
-import numpy as np
-
 # Константы для Galois Field (GF(256))
 GF_SIZE = 256
 GF_POLY = 0x11D  # Полином для GF(2^8), используемый в RS кодировании
@@ -17,12 +15,23 @@ for i in range(1, GF_SIZE):
     gf_exp[i] = x
     gf_log[x] = i
 
-# Функции для умножения и деления в GF(256)
+# Функция для умножения в GF(256)
 def gf_multiply(x, y):
-    return 0 if x == 0 or y == 0 else gf_exp[(gf_log[x] + gf_log[y]) % (GF_SIZE - 1)]
+    # Если хотя бы один из элементов равен нулю, результат будет нулем
+    if x == 0 or y == 0:
+        return 0
+    # Иначе мы складываем логарифмы x и y, затем находим результат по таблице экспонент
+    log_sum = gf_log[x] + gf_log[y]
+    return gf_exp[log_sum % (GF_SIZE - 1)]
 
+# Функция для деления в GF(256)
 def gf_divide(x, y):
-    return 0 if x == 0 else gf_exp[(gf_log[x] - gf_log[y]) % (GF_SIZE - 1)]
+    # Если делимое равно нулю, результат будет нулем
+    if x == 0:
+        return 0
+    # Иначе мы вычитаем логарифм y из логарифма x и находим результат по таблице экспонент
+    log_diff = gf_log[x] - gf_log[y]
+    return gf_exp[log_diff % (GF_SIZE - 1)]
 
 # Функция для полиномиального деления
 def polynomial_division(dividend, divisor):
@@ -34,11 +43,20 @@ def polynomial_division(dividend, divisor):
                 out[i + j] ^= gf_multiply(divisor[j], coeff)
     return out[-(len(divisor) - 1):]
 
+# Функция для умножения двух полиномов
+def polynomial_multiply(poly1, poly2):
+    # Инициализируем результат нулями
+    result = [0] * (len(poly1) + len(poly2) - 1)
+    for i in range(len(poly1)):
+        for j in range(len(poly2)):
+            result[i + j] ^= gf_multiply(poly1[i], poly2[j])
+    return result
+
 # Функция для создания генераторного полинома
 def generate_generator_poly(n_symbols):
     g = [1]
     for i in range(n_symbols):
-        g = np.polymul(g, [1, gf_exp[i]]).astype(int).tolist()
+        g = polynomial_multiply(g, [1, gf_exp[i]])
     return g
 
 # Кодирование данных
