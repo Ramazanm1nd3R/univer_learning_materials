@@ -75,6 +75,6 @@ def introduce_error(message, error_pos, error_value):
 def simple_error_correction(message, original_message):
     for i, (m, o) in enumerate(zip(message, original_message)):
         if m != o:
-            print(f"Ошибка найдена на позиции {i + 1}, корректное значение: {o}")
+            print(f"Ошибка найдена на позиции: {i + 1}, корректное значение: {o}")
             message[i] = o  # Исправляем значение
     return message[:len(original_message)]  # Возвращаем только оригинальное сообщение

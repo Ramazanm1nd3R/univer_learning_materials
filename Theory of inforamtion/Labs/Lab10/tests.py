@@ -2,11 +2,12 @@ from algorithm import rs_encode, introduce_error, simple_error_correction
 
 def run_test_case(data, n_symbols, error_positions):
     print("\n=== Тестовый кейс ===")
-    print("Исходное сообщение:", data)
+    print("Исходное сообщение (DATAIN):", data)
 
+    print("Генераторный полином (POLYNOM): [2, 8, 5]")
     # Кодирование данных
     encoded_data = rs_encode(data, n_symbols)
-    print("Закодированные данные:", encoded_data)
+    print("Закодированные данные (CODEWORD):", encoded_data)
 
     # Внесение ошибок
     corrupted_data = encoded_data.copy()
