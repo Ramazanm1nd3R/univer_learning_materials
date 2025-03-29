@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.javafx_lab6.Controller.ConverterController"
+      spacing="15" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Converter" style="-fx-font-size: 18px;"/>
+
+    <ChoiceBox fx:id="modeSelector"/>
+    <TextField fx:id="inputField" promptText="Enter value"/>
+    <Button text="Convert" onAction="#convert"/>
+    <Label fx:id="resultLabel" text="Result:" style="-fx-font-size: 16px;"/>
+</VBox>
