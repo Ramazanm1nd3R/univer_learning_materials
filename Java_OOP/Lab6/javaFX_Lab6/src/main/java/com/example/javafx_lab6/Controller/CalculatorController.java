@@ -11,10 +11,17 @@ public class CalculatorController {
     private Label display;
 
     private StringBuilder currentInput = new StringBuilder();
+    private double lastResult = 0;
+    private String lastOperator = "";
+    private boolean isNewInput = true;
 
     @FXML
     public void onNumberClick(ActionEvent event) {
         String number = ((Button) event.getSource()).getText();
+        if (isNewInput) {
+            currentInput.setLength(0);
+            isNewInput = false;
+        }
         currentInput.append(number);
         updateDisplay();
     }
@@ -22,27 +29,72 @@ public class CalculatorController {
     @FXML
     public void onOperatorClick(ActionEvent event) {
         String op = ((Button) event.getSource()).getText();
-        if (currentInput.length() == 0) return;
-        char last = currentInput.charAt(currentInput.length() - 1);
-        if ("+-*/".indexOf(last) >= 0) {
-            currentInput.setCharAt(currentInput.length() - 1, op.charAt(0));
-        } else {
-            currentInput.append(op);
+
+        if (!lastOperator.isEmpty() && !isNewInput) {
+            onEquals(); // выполнить предыдущую операцию
         }
-        updateDisplay();
+
+        try {
+            lastResult = Double.parseDouble(currentInput.toString());
+        } catch (Exception ignored) {
+            lastResult = 0;
+        }
+
+        lastOperator = op;
+        isNewInput = true;
+    }
+
+    @FXML
+    public void onEquals() {
+        if (lastOperator.isEmpty() || isNewInput) return;
+
+        try {
+            double secondOperand = Double.parseDouble(currentInput.toString());
+            switch (lastOperator) {
+                case "+" -> lastResult += secondOperand;
+                case "-" -> lastResult -= secondOperand;
+                case "*" -> lastResult *= secondOperand;
+                case "/" -> lastResult /= secondOperand;
+            }
+            currentInput = new StringBuilder(String.valueOf(lastResult));
+            lastOperator = "";
+            updateDisplay();
+            isNewInput = true;
+        } catch (Exception e) {
+            display.setText("Error");
+        }
     }
 
     @FXML
     public void onClear() {
         currentInput.setLength(0);
+        lastOperator = "";
+        lastResult = 0;
+        isNewInput = true;
         updateDisplay();
     }
 
     @FXML
-    public void onEquals() {
+    public void onDot() {
+        if (isNewInput) {
+            currentInput.setLength(0);
+            currentInput.append("0");
+            isNewInput = false;
+        }
+        if (!currentInput.toString().contains(".")) {
+            currentInput.append(".");
+        }
+        updateDisplay();
+    }
+
+    @FXML
+    public void onToggleSign() {
+        if (currentInput.length() == 0) return;
+
         try {
-            String result = eval(currentInput.toString());
-            currentInput = new StringBuilder(result);
+            double value = Double.parseDouble(currentInput.toString());
+            value *= -1;
+            currentInput = new StringBuilder(String.valueOf(value));
             updateDisplay();
         } catch (Exception e) {
             display.setText("Error");
@@ -50,73 +102,18 @@ public class CalculatorController {
     }
 
     @FXML
-    public void onDot() {
-        currentInput.append(".");
-        updateDisplay();
+    public void onPercent() {
+        try {
+            double value = Double.parseDouble(currentInput.toString());
+            value = value / 100;
+            currentInput = new StringBuilder(String.valueOf(value));
+            updateDisplay();
+        } catch (Exception e) {
+            display.setText("Error");
+        }
     }
 
     private void updateDisplay() {
         display.setText(currentInput.toString());
-    }
-
-    private String eval(String expression) {
-        // Простой безопасный парсер
-        double result = new Object() {
-            int pos = -1, ch;
-
-            void nextChar() {
-                ch = (++pos < expression.length()) ? expression.charAt(pos) : -1;
-            }
-
-            boolean eat(int charToEat) {
-                while (ch == ' ') nextChar();
-                if (ch == charToEat) {
-                    nextChar();
-                    return true;
-                }
-                return false;
-            }
-
-            double parse() {
-                nextChar();
-                double x = parseExpression();
-                if (pos < expression.length()) throw new RuntimeException("Unexpected: " + (char) ch);
-                return x;
-            }
-
-            double parseExpression() {
-                double x = parseTerm();
-                while (true) {
-                    if (eat('+')) x += parseTerm();
-                    else if (eat('-')) x -= parseTerm();
-                    else return x;
-                }
-            }
-
-            double parseTerm() {
-                double x = parseFactor();
-                while (true) {
-                    if (eat('*')) x *= parseFactor();
-                    else if (eat('/')) x /= parseFactor();
-                    else return x;
-                }
-            }
-
-            double parseFactor() {
-                if (eat('+')) return parseFactor();
-                if (eat('-')) return -parseFactor();
-
-                double x;
-                int startPos = this.pos;
-                if ((ch >= '0' && ch <= '9') || ch == '.') {
-                    while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
-                    x = Double.parseDouble(expression.substring(startPos, this.pos));
-                } else {
-                    throw new RuntimeException("Unexpected: " + (char) ch);
-                }
-                return x;
-            }
-        }.parse();
-        return String.valueOf(result);
     }
 }

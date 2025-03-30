@@ -8,7 +8,6 @@
       fx:controller="com.example.javafx_lab6.Controller.CalculatorController"
       spacing="25" alignment="CENTER">
 
-
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
@@ -23,29 +22,34 @@
               hgap="10" vgap="10"
               alignment="CENTER">
 
-        <Button text="7" onAction="#onNumberClick" GridPane.rowIndex="0" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
-        <Button text="8" onAction="#onNumberClick" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
-        <Button text="9" onAction="#onNumberClick" GridPane.rowIndex="0" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
+        <!-- Row 0 -->
+        <Button text="AC" onAction="#onClear" GridPane.rowIndex="0" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
+        <Button text="+/-" onAction="#onToggleSign" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
+        <Button text="%%" onAction="#onPercent" GridPane.rowIndex="0" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
         <Button text="/" onAction="#onOperatorClick" GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="65" prefHeight="45"/>
 
-        <Button text="4" onAction="#onNumberClick" GridPane.rowIndex="1" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
-        <Button text="5" onAction="#onNumberClick" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
-        <Button text="6" onAction="#onNumberClick" GridPane.rowIndex="1" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
+        <!-- Row 1 -->
+        <Button text="7" onAction="#onNumberClick" GridPane.rowIndex="1" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
+        <Button text="8" onAction="#onNumberClick" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
+        <Button text="9" onAction="#onNumberClick" GridPane.rowIndex="1" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
         <Button text="*" onAction="#onOperatorClick" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="65" prefHeight="45"/>
 
-        <Button text="1" onAction="#onNumberClick" GridPane.rowIndex="2" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
-        <Button text="2" onAction="#onNumberClick" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
-        <Button text="3" onAction="#onNumberClick" GridPane.rowIndex="2" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
+        <!-- Row 2 -->
+        <Button text="4" onAction="#onNumberClick" GridPane.rowIndex="2" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
+        <Button text="5" onAction="#onNumberClick" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
+        <Button text="6" onAction="#onNumberClick" GridPane.rowIndex="2" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
         <Button text="-" onAction="#onOperatorClick" GridPane.rowIndex="2" GridPane.columnIndex="3" prefWidth="65" prefHeight="45"/>
 
-        <Button text="0" onAction="#onNumberClick" GridPane.rowIndex="3" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
-        <Button text="." onAction="#onDot" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
-        <Button text="=" onAction="#onEquals" GridPane.rowIndex="3" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
+        <!-- Row 3 -->
+        <Button text="1" onAction="#onNumberClick" GridPane.rowIndex="3" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
+        <Button text="2" onAction="#onNumberClick" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
+        <Button text="3" onAction="#onNumberClick" GridPane.rowIndex="3" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
         <Button text="+" onAction="#onOperatorClick" GridPane.rowIndex="3" GridPane.columnIndex="3" prefWidth="65" prefHeight="45"/>
 
-        <Button text="C" onAction="#onClear"
-                GridPane.rowIndex="4" GridPane.columnIndex="0"
-                GridPane.columnSpan="4"
-                prefWidth="280" prefHeight="45"/>
+        <!-- Row 4 -->
+        <Button text="0" onAction="#onNumberClick" GridPane.rowIndex="4" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
+        <Button text="." onAction="#onDot" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
+        <Button text="=" onAction="#onEquals" GridPane.rowIndex="4" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
+        <Button text="C" onAction="#onClear" GridPane.rowIndex="4" GridPane.columnIndex="3" prefWidth="65" prefHeight="45"/>
     </GridPane>
 </VBox>
