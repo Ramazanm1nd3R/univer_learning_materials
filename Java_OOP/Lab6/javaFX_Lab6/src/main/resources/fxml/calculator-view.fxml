@@ -25,7 +25,7 @@
         <!-- Row 0 -->
         <Button text="AC" onAction="#onClear" GridPane.rowIndex="0" GridPane.columnIndex="0" prefWidth="65" prefHeight="45"/>
         <Button text="+/-" onAction="#onToggleSign" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="65" prefHeight="45"/>
-        <Button text="%%" onAction="#onPercent" GridPane.rowIndex="0" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
+        <Button text="\%" onAction="#onPercent" GridPane.rowIndex="0" GridPane.columnIndex="2" prefWidth="65" prefHeight="45"/>
         <Button text="/" onAction="#onOperatorClick" GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="65" prefHeight="45"/>
 
         <!-- Row 1 -->
