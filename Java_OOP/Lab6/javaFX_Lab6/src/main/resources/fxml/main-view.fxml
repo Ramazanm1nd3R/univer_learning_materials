@@ -5,17 +5,18 @@
 <?import javafx.geometry.Pos?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.javafx_lab6.Controller.MainController">
+            fx:controller="com.example.javafx_lab6.Controller.MainController"
+            stylesheets="@../css/style.css">
 
     <!-- Верхнее меню (изначально скрыто) -->
     <top>
-        <HBox fx:id="topMenu" spacing="10" alignment="CENTER_LEFT" visible="false" managed="false">
+        <HBox fx:id="topMenu" spacing="10" alignment="CENTER_LEFT" visible="false" managed="false" styleClass="top-bar">
             <padding>
                 <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
-            <Button text="Converter" onAction="#showConverter"/>
-            <Button text="Stopwatch" onAction="#showStopwatch"/>
-            <Button text="Calculator" onAction="#showCalculator"/>
+            <Button text="Converter" onAction="#showConverter" styleClass="nav-button"/>
+            <Button text="Stopwatch" onAction="#showStopwatch" styleClass="nav-button"/>
+            <Button text="Calculator" onAction="#showCalculator" styleClass="nav-button"/>
         </HBox>
     </top>
 
@@ -26,9 +27,9 @@
                 <padding>
                     <Insets top="50" right="20" bottom="20" left="20"/>
                 </padding>
-                <Button text="Converter" prefWidth="250" style="-fx-font-size: 20px;" onAction="#showConverter"/>
-                <Button text="Stopwatch" prefWidth="250" style="-fx-font-size: 20px;" onAction="#showStopwatch"/>
-                <Button text="Calculator" prefWidth="250" style="-fx-font-size: 20px;" onAction="#showCalculator"/>
+                <Button text="Converter" prefWidth="250" styleClass="main-button" onAction="#showConverter"/>
+                <Button text="Stopwatch" prefWidth="250" styleClass="main-button" onAction="#showStopwatch"/>
+                <Button text="Calculator" prefWidth="250" styleClass="main-button" onAction="#showCalculator"/>
             </VBox>
         </StackPane>
     </center>

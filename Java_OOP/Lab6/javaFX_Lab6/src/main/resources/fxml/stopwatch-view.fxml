@@ -2,19 +2,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.javafx_lab6.Controller.StopwatchController"
-      spacing="15" alignment="CENTER">
-
+      spacing="25" alignment="CENTER">
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
-    <Label fx:id="timeLabel" text="00:00:00" style="-fx-font-size: 24px;"/>
+    <Label fx:id="timeLabel" text="00:00:00" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
 
-    <HBox spacing="10" alignment="CENTER">
-        <Button fx:id="startPauseButton" text="Start" onAction="#handleStartPause"/>
-        <Button fx:id="clearButton" text="Clear" onAction="#handleClear"/>
+    <HBox spacing="20" alignment="CENTER">
+        <Button fx:id="startPauseButton" text="Start" onAction="#handleStartPause" prefWidth="100" style="-fx-font-size: 16px;"/>
+        <Button fx:id="clearButton" text="Clear" onAction="#handleClear" prefWidth="100" style="-fx-font-size: 16px;"/>
     </HBox>
 </VBox>

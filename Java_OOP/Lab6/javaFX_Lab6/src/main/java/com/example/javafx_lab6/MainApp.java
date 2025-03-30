@@ -12,7 +12,8 @@ public class MainApp extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-view.fxml"));
         Parent root = loader.load(); // загружаем только один раз
 
-        Scene scene = new Scene(root, 600, 400); // создаём сцену
+        Scene scene = new Scene(root, 600, 400);
+        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
         primaryStage.setTitle("JavaFX Lab 6");
         primaryStage.setScene(scene);           // устанавливаем один раз
