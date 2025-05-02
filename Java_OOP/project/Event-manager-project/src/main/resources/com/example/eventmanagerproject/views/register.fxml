@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.eventmanagerproject.controller.RegisterController">
+
+    <Label text="Регистрация"/>
+    <TextField fx:id="nameField" promptText="Имя"/>
+    <TextField fx:id="emailField" promptText="Email"/>
+    <PasswordField fx:id="passwordField" promptText="Пароль"/>
+    <Button text="Зарегистрироваться" onAction="#onRegisterClicked"/>
+</VBox>

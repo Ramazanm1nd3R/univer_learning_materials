@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.eventmanagerproject.controller.CreateEventController"
+      spacing="20" alignment="CENTER">
+    <stylesheets>
+        <URL value="@../styles/chat.css"/>
+    </stylesheets>
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Создание мероприятия" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+    <TextField fx:id="titleField" promptText="Название" prefWidth="300" style="-fx-font-size: 14px;"/>
+    <TextArea fx:id="descriptionField" promptText="Описание" prefWidth="300" prefHeight="100" wrapText="true" style="-fx-font-size: 14px;"/>
+    <TextField fx:id="locationField" promptText="Локация" prefWidth="300" style="-fx-font-size: 14px;"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <DatePicker fx:id="datePicker" promptText="Дата"/>
+        <ComboBox fx:id="timeComboBox" promptText="Время"/>
+    </HBox>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Сохранить" onAction="#onSaveClicked" prefWidth="140" style="-fx-font-size: 14px;"/>
+        <Button text="Назад" onAction="#onBackClicked" prefWidth="140" style="-fx-font-size: 14px;"/>
+    </HBox>
+
+</VBox>

@@ -1,0 +1,45 @@
+.root {
+    -fx-background-color: #f7f9fc;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+}
+
+.label {
+    -fx-text-fill: #333;
+}
+
+.button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #357ab8;
+}
+
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #ccc;
+    -fx-padding: 8 12;
+}
+
+.text-area {
+    -fx-control-inner-background: #fff;
+}
+
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 6;
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+}
+
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #4a90e2;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.eventmanagerproject.controller.ChatController"
+      spacing="10" alignment="CENTER" prefWidth="600" prefHeight="400">
+
+    <stylesheets>
+        <URL value="@../styles/chat.css"/>
+    </stylesheets>
+
+    <Label fx:id="eventTitle" text="Чат мероприятия"/>
+
+    <ListView fx:id="messageListView" prefHeight="300" prefWidth="580" />
+
+    <HBox spacing="10">
+        <TextField fx:id="messageField" promptText="Введите сообщение..." HBox.hgrow="ALWAYS"/>
+        <Button text="Отправить" onAction="#onSendClicked"/>
+    </HBox>
+</VBox>
